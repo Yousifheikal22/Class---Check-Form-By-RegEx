@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple form design</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #607d8b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+    width: 30rem;
+    border: 0px solid;
+    box-shadow: -14px 13px 66px 42px rgba(0,0,0,0.1);
+    border-radius: 7px;
+    background-color: white;
+    max-width: 1200px;
+}
+
+form {
+    text-align: center;
+}
+.box h2{
+    color: #607d8b;
+    font-family: 'Fredoka', sans-serif;
+    letter-spacing: 10.1px;
+    /* margin-top: -8px; */
+    padding-bottom: 27px;
+}
+
+.box input{
+    margin: 7px 10px;
+    height: 3vh;
+    border: 1px solid gray;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    padding: 17px 11px;
+    width: 20rem;
+}
+
+.box input:focus{
+    outline: 2px solid royalblue;
+    border: none;
+    outline-offset: 2px;
+}
+
+.box button{
+    height: 4vh;
+    padding: 5px 10px;
+    border: 0px solid gray;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    margin: 10px 0px;
+    background-color: lightsalmon;
+    width: 20rem;
+    transition: 0.2s all ease-in-out;
+}
+
+.box button:hover{
+    background-color: rgb(235, 136, 97);
+    transition: 0.2s all ease-in-out;
+}
+
+@media only screen and (max-width: 490px){
+    .box{
+        width: 20rem;
+    }
+
+    .container{
+        max-width: 100%;
+    }
+
+    .box input, .box button{
+        width: 15rem;
+    }
+}
+
+@media only screen and (max-width: 340px){
+    .box{
+        width: 15rem;
+    }
+
+    .box h2{
+        font-size: 15px;
+    }
+
+    .box input, .box button{
+        width: 10rem;
+    }
+}
+
+@media only screen and (max-width: 250px){
+    .box{
+        width: 13rem;
+    }
+
+    .box input, .box button{
+        width: 7rem;
+    }
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <form action="RegEx-Validate.php" method="POST">
+            <h2>Login Form</h2>
+            <input type="text" name="name" id="name" placeholder="Username" > <br />
+            <?php if(isset($this-> NameError)) { ?> 
+                <p style="color: red;" ><?php echo $this-> NameError ?> </p>
+                <?php } ?> 
+            <input type="number" name="number" id="number" placeholder="Phone number" > <br />
+            <?php if(isset($this->NumberError)) {?>
+                <p style="color: red;" ><?php echo $this->NumberError ?></p>
+            <?php }?>
+            <input type="email" name="email" id="email" placeholder="E-mail" > <br />
+            <?php if(isset($this->EmailError)) {?>
+                <p style="color: red;" ><?php echo $this->EmailError ?></p>
+            <?php }?>
+            <input type="password" name="password" id="password" placeholder="Password" > <br />
+            <?php if(isset($this->PasswordError)) {?>
+                <p style="color: red; " ><?php echo $this->PasswordError ?></p>
+            <?php }?>
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
