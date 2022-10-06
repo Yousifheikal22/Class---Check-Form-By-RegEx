@@ -1,0 +1,93 @@
+<?php
+
+class Form {
+    public  $Name ;
+    public  $PatternName = '/^[A-z][a-z]{4,10}$/' ;
+
+    private $Number ;
+    private $PatternPhone = "/^\d{11}$/" ; 
+
+    public  $Email ;
+    public  $PatternEmail  = "/^(?:\w{8,14})@(?:(yahoo|hotmail|gmail))\.(?:com)$/";
+
+    private $Password;
+    private $PatternPassword = '/^\w{7,15}$/' ;
+
+    public $NameError ;
+    public $NumberError ;
+    public $EmailError ;
+    public $PassworError ;
+
+
+    public function form() {
+        $this->Name = $_POST['name'] ;
+        $this->Number =  $_POST['number'] ;
+        $this->Email = $_POST['email'] ;
+        $this->Password = $_POST['password'] ;
+
+
+        if(empty($this->Name)) 
+        {
+            $this->NameError = 'Please insert your Username <br>' ;
+        }
+        else if(isset($this->Name)) 
+        {
+            if(!preg_match($this->PatternName,$this->Name))
+            {
+                $this->NameError = 'Name not exist <br>' ;
+            }
+        }
+
+        if(empty($this->Number)) 
+        {
+            $this->NumberError = 'Please insert your Number <br>' ;
+        }
+        else if(isset($this->Number)) 
+        {
+            if(!preg_match($this->PatternPhone,$this->Number))
+            {
+                $this->NumberError = 'Number not exist <br>' ;
+            }
+        }
+
+        if(empty($this->Email)) 
+        {
+            $this->EmailError = 'Please insert your E-mail <br>' ;
+        }
+        else if(isset($this->Number)) 
+        {
+            if(!preg_match($this->PatternEmail,$this->Email))
+            {
+                $this->EmailError = 'The email you entered is not associated with an account. Find your account and log in. <br>' ;
+            }
+        }
+
+        if(empty($this->Password)) 
+        {
+            $this->PasswordError = 'Please insert your Password <br>' ;
+        }
+        else if(isset($this->Password)) 
+        {
+            if(!preg_match($this->PatternPassword,$this->Password))
+            {
+                $this->PasswordError = 'Password not exist <br>' ;
+            }
+        }
+
+        if (empty($this -> NameError)  &&
+            empty($this -> NumberError)&&
+            empty($this -> EmailError) &&
+            empty($this -> PasswordError)) { 
+            sleep(2) ;
+            include "Register/Accept.php" ; 
+        }else {
+            include ('Format.php') ; 
+        }
+
+    }
+}
+
+$object = new Form() ;
+
+$object->form() ;
+?>
